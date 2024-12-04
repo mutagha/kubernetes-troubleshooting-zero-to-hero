@@ -84,6 +84,7 @@ resources:
     memory: "1Gi"
 
     6  RELOADER
+    
 Tools like Reloader help to automatically restart pods when a ConfigMap or Secret is updated.
 Steps to Implement Reloader:
 Deploy Reloader:
@@ -94,6 +95,7 @@ annotations:
   reloader.stakater.com/match: "true"
   
 7   CONFIG OUT OF DATE
+
 ConfigMap or Secret used by the pods has been updated, but pods are not reloaded.
 Solution:
 Trigger a rolling restart to apply new configuration:
@@ -116,7 +118,8 @@ Follow a naming convention like:
 <SERVICE_NAME>_SERVICE_HOST for the service's Cluster IP.
 <SERVICE_NAME>_SERVICE_PORT for the service's port.
 
-9 Create Container Error
+9 CREATE CONTAINER ERROR
+
 Issues with the container image (e.g., not found, unauthorized, corrupt).
 Misconfigured container specifications (e.g., invalid commands or environment variables).
 Solution:
