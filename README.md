@@ -83,3 +83,46 @@ resources:
   limits:
     memory: "1Gi"
 
+    6  RELOADER
+Tools like Reloader help to automatically restart pods when a ConfigMap or Secret is updated.
+Steps to Implement Reloader:
+Deploy Reloader:
+helm repo add stakater https://stakater.github.io/stakater-charts
+helm install reloader stakater/reloader
+Annotate deployments to watch ConfigMaps or Secrets:
+annotations:
+  reloader.stakater.com/match: "true"
+  
+7   CONFIG OUT OF DATE
+ConfigMap or Secret used by the pods has been updated, but pods are not reloaded.
+Solution:
+Trigger a rolling restart to apply new configuration:
+kubectl rollout restart deployment <deployment-name>
+Use a reloader (like Reloader or Kustomize) to automatically restart pods on config updates.
+
+8 ENABLE SERVICE LINK 
+
+The enableServiceLinks field determines whether environment variables are injected into the container for linked services. Problems can occur with unnecessary environment variables.
+Solution:
+Disable enableServiceLinks in the pod spec if it’s not required:
+spec:
+  enableServiceLinks: false
+The enableServiceLinks field in a Kubernetes Pod specification determines whether environment variables are automatically injected into the container for all services in the namespace. These environment variables are derived from service properties, such as their Cluster IP and port.
+   How it Works
+When enableServiceLinks is set to true (default behavior), Kubernetes will:
+
+Inject environment variables for all available services in the namespace into the container.
+Follow a naming convention like:
+<SERVICE_NAME>_SERVICE_HOST for the service's Cluster IP.
+<SERVICE_NAME>_SERVICE_PORT for the service's port.
+
+9 Create Container Error
+Issues with the container image (e.g., not found, unauthorized, corrupt).
+Misconfigured container specifications (e.g., invalid commands or environment variables).
+Solution:
+Check pod events for details:
+kubectl describe pod <pod-name>
+
+Verify the container image is accessible and correct:
+docker pull <image-name>
+Fix errors in container specifications in the deployment YAML.
