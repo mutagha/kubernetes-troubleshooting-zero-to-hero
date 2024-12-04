@@ -58,7 +58,9 @@ List and describe relevant roles and bindings
 Grant necessary permissions by creating or modifying roles and bindings.
 
 ## Day-05
-OOMKILLLED ERROR ( exit code 137)
+OOMKILLLED ERROR ( exit code 137) 
+*  Exit Code 127 in Kubernetes typically indicates that a command or binary could not be found or executed within the container For example Command Not Found,Incorrect Path, Missing Dependencies, Insufficient Permissions:
+* Exit (code 1)  Kubernetes typically means a container terminated due to an error. It's a generic error, making it challenging to diagnose for example Application Errors, Container Configuration Issues,Failed Health Checks,Dependency Issues,Resource Limit Constraints
 
 Out of Memory (OOM) killed errors in Kubernetes occur when a container exceeds its memory limits, causing the system to terminate the process to free up memory. Here's how to troubleshoot and resolve OOMKilled errors in Kubernetes:
 kubectl describe pod <pod-name> -n <namespace>
