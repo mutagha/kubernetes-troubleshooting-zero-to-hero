@@ -133,7 +133,7 @@ docker pull <image-name>
 Fix errors in container specifications in the deployment YAML.
 
 
-Multi-Attach Volume Error in Kubernetes
+9 Multi-Attach Volume Error in Kubernetes
 
 This error typically occurs when a Persistent Volume (PV) backed by a storage type that does not support simultaneous attachment to multiple nodes is being accessed by multiple pods or nodes at the same time. This is common with volume types like AWS EBS, GCE PD, or Azure Disks, which by design allow only one node to attach to the volume at any given time.
 Common Scenarios Causing Multi-Attach Errors
@@ -159,7 +159,7 @@ Solution:
 Switch to a volume type that supports ReadWriteMany (RWX) access mode, such as:
 NFS, CephFS, GlusterFS,EFS (AWS)
 
-Ingress Controller in Kubernetes: Possible Issues and Solutions
+10   Ingress Controller in Kubernetes: Possible Issues and Solutions
 
 An Ingress Controller is a key component in Kubernetes for managing HTTP and HTTPS traffic to services within a cluster. It implements the rules defined in an Ingress resource, enabling routing, TLS termination, and other features. However, configuring and troubleshooting an Ingress Controller can present challenges.
        Common Issues with Ingress Controllers
