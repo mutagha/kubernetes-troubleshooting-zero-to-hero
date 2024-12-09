@@ -84,8 +84,16 @@ resources:
     memory: "512Mi"
   limits:
     memory: "1Gi"
+  
+6  CONFIG OUT OF DATE
 
-    6  RELOADER
+ConfigMap or Secret used by the pods has been updated, but pods are not reloaded.
+Solution:
+Trigger a rolling restart to apply new configuration:
+kubectl rollout restart deployment <deployment-name>
+Use a reloader (like Reloader or Kustomize) to automatically restart pods on config updates.
+
+** RELOADER
     
 Tools like Reloader help to automatically restart pods when a ConfigMap or Secret is updated.
 Steps to Implement Reloader:
@@ -95,16 +103,8 @@ helm install reloader stakater/reloader
 Annotate deployments to watch ConfigMaps or Secrets:
 annotations:
   reloader.stakater.com/match: "true"
-  
-7   CONFIG OUT OF DATE
 
-ConfigMap or Secret used by the pods has been updated, but pods are not reloaded.
-Solution:
-Trigger a rolling restart to apply new configuration:
-kubectl rollout restart deployment <deployment-name>
-Use a reloader (like Reloader or Kustomize) to automatically restart pods on config updates.
-
-8 ENABLE SERVICE LINK 
+7 ENABLE SERVICE LINK 
 
 The enableServiceLinks field determines whether environment variables are injected into the container for linked services. Problems can occur with unnecessary environment variables.
 Solution:
@@ -120,7 +120,7 @@ Follow a naming convention like:
 <SERVICE_NAME>_SERVICE_HOST for the service's Cluster IP.
 <SERVICE_NAME>_SERVICE_PORT for the service's port.
 
-9 CREATE CONTAINER ERROR
+8 CREATE CONTAINER ERROR
 
 Issues with the container image (e.g., not found, unauthorized, corrupt).
 Misconfigured container specifications (e.g., invalid commands or environment variables).
